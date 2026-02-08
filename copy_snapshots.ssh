@@ -1,0 +1,1 @@
+scp 'davidetrp@172.20.10.2:/home/davidetrp/aiuto_cam/snapshots/snap*.jpg' .
