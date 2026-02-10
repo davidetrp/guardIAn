@@ -8,7 +8,7 @@ from datetime import datetime
 from clean_snaps import *
 from device_identity import *
 from supabase_client import *
-
+from config import *
 
 SNAPSHOT_DIR = Path.home() / "aiuto_cam" / "snapshots"
 SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)

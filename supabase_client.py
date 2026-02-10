@@ -1,7 +1,7 @@
 import requests
 import os
 import time
-from config import *
+from config import SUPABASE_KEY, SUPABASE_URL
 
 def register_device(device_id):
     requests.post(

@@ -1,5 +1,5 @@
 from device_identity import get_device_id
-from supabase_client import *
+
 # Zona di interesse (percentuale del frame)
 ROI_Y_START = 0.5     # metà inferiore: soglia/porta
 ROI_Y_END   = 1.0
