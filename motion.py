@@ -5,7 +5,6 @@ import cv2
 import numpy as np
 from pathlib import Path
 from datetime import datetime
-from upload import *
 from clean_snaps import *
 from device_identity import *
 from supabase_client import *
@@ -72,7 +71,7 @@ while True:
         filename = capture_hd()
         status = upload_image(DEVICE_ID, filename)
         if status == 200:
-	   create_event(DEVICE_ID, filename)
+           create_event(DEVICE_ID, filename)
            os.remove(filename)
 
         last_hd = now
