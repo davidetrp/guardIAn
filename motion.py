@@ -1,9 +1,15 @@
+import os
 import time
 import subprocess
 import cv2
 import numpy as np
 from pathlib import Path
 from datetime import datetime
+from upload import *
+from clean_snaps import *
+from device_identity import *
+from supabase_client import *
+
 
 SNAPSHOT_DIR = Path.home() / "aiuto_cam" / "snapshots"
 SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
@@ -38,6 +44,7 @@ def capture_hd():
         "-o", str(filename)
     ], check=True)
     print("📸 HD Snapshot:", filename)
+    return filename
 
 print("🟢 Diff-based motion detection started")
 
@@ -62,8 +69,14 @@ while True:
 
     now = time.time()
     if changed > MIN_PIXELS and (now - last_hd) > COOLDOWN:
-        capture_hd()
+        filename = capture_hd()
+        status = upload_image(DEVICE_ID, filename)
+        if status == 200:
+	   create_event(DEVICE_ID, filename)
+           os.remove(filename)
+
         last_hd = now
 
+    cleanup_old_files()
     prev_gray = img
     time.sleep(1)
