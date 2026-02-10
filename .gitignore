@@ -1,0 +1,4 @@
+*.jpg
+device_id.txt
+guardian_env/
+tmp/
